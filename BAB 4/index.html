@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musik Kita Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🎵 Musik Kita Studio</div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Beranda</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul>
+  </nav>
+
+  <section class="landing bg-photo-index">
+    <div class="overlay">
+      <h1>Selamat Datang di Musik Kita Studio</h1>
+      <p>Tempat terbaik untuk latihan musik dengan fasilitas profesional dan suasana nyaman.</p>
+      <a href="dashboard.html" id="lihatStudio" class="btn">Lihat Studio</a>
+      <div id="welcome-message"></div>
+      <br>
+      <button id="promoBtn" class="btn">Lihat Promo Spesial</button>
+    </div>
+  </section>
+
+  <div id="promo-banner"></div>
+  <div id="toast"></div>
+
+  <div id="promoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>🎉 Promo Spesial!</h2>
+      <p>Dapatkan diskon 30% untuk penyewaan studio diatas 3 jam! Yuk, buruan booking sebelum kehabisan slot 🎶</p>
+    </div>
+  </div>
+
+  <section class="info">
+    <div class="card">
+      <h3>Studio Modern</h3>
+      <p>Dilengkapi peralatan musik terkini, ruang akustik terbaik, dan fasilitas rekaman.</p>
+    </div>
+    <div class="card">
+      <h3>Harga Terjangkau</h3>
+      <p>Latihan mulai dari Rp100.000 per jam, dengan berbagai paket menarik.</p>
+    </div>
+    <div class="card">
+      <h3>Lokasi Strategis</h3>
+      <p>Mudah diakses dari pusat kota, dengan area parkir luas dan nyaman.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Musik Kita Studio | Semua Hak Dilindungi</p>
+  </footer>
+
+  <script>
+    const welcome = document.getElementById('welcome-message');
+    const waktu = new Date().getHours();
+    let greet = '';
+    if (waktu < 12) greet = 'Selamat pagi! Semangat bermusik hari ini 🎶';
+    else if (waktu < 18) greet = 'Selamat siang! Yuk latihan bareng temanmu 🎸';
+    else greet = 'Selamat malam! Saatnya bermusik santai 🎤';
+    welcome.textContent = greet;
+
+    const promo = document.getElementById('promo-banner');
+    promo.innerHTML = '<strong>🔥 Promo Spesial:</strong> Diskon 20% untuk penyewaan studio di hari Jumat!';
+    promo.style.background = '#1d4ed8';
+    promo.style.color = 'white';
+    promo.style.padding = '15px';
+    promo.style.textAlign = 'center';
+    promo.style.fontWeight = '600';
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'show';
+      setTimeout(() => toast.className = toast.className.replace('show', ''), 3500);
+    }
+
+    window.onload = () => showToast('Selamat datang di Musik Kita Studio 🎵');
+
+    const modal = document.getElementById("promoModal");
+    const btn = document.getElementById("promoBtn");
+    const span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+      showToast("Promo terbuka! 🎉");
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) modal.style.display = "none";
+    }
+
+    const lihatStudio = document.getElementById('lihatStudio');
+    lihatStudio.addEventListener('mouseover', () => {
+      lihatStudio.style.backgroundColor = '#2563eb';
+      lihatStudio.style.color = 'white';
+    });
+    lihatStudio.addEventListener('mouseout', () => {
+      lihatStudio.style.backgroundColor = 'white';
+      lihatStudio.style.color = '#1d4ed8';
+    });
+  </script>
+</body>
+</html>
